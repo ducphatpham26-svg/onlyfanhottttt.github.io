@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Virtual Fan & Campfire Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Virtual Fan & Campfire Simulator</h1>
+    <p>Relax with wind, fire, and a bit of BBQ.</p>
+  </header>
+
+  <main class="main-layout">
+    <!-- FAN PANEL -->
+    <section class="panel fan-panel">
+      <h2>Fan</h2>
+      <div class="fan-wrapper">
+        <div class="fan-body">
+          <div class="fan-center"></div>
+          <div class="fan-blades"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <span class="label">Power:</span>
+          <button id="fan-toggle">Turn On</button>
+        </div>
+
+        <div class="control-group">
+          <span class="label">Speed:</span>
+          <button class="fan-speed-btn" data-speed="low">Low</button>
+          <button class="fan-speed-btn" data-speed="medium">Medium</button>
+          <button class="fan-speed-btn" data-speed="high">High</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPFIRE PANEL -->
+    <section class="panel fire-panel">
+      <h2>Campfire</h2>
+
+      <div class="fire-area">
+        <div class="meat-skewer">
+          <div class="meat" id="meat"></div>
+        </div>
+
+        <div class="fire">
+          <div class="flame flame1"></div>
+          <div class="flame flame2"></div>
+          <div class="flame flame3"></div>
+          <div class="logs"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <span class="label">Fire:</span>
+          <button id="add-wood">Add Wood</button>
+        </div>
+
+        <div class="control-group">
+          <span class="label">BBQ:</span>
+          <button id="roast-meat">Roast Meat</button>
+          <button id="stop-roast">Stop</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="control-group">
+      <span class="label">Sound:</span>
+      <button id="sound-toggle">Sound On</button>
+    </div>
+    <div id="status-text">Status: Fan Off, Fire Normal, Meat Raw.</div>
+  </footer>
+
+  <!-- AUDIO ELEMENTS -->
+  <!-- NOTE: Replace src with your own audio files -->
+  <audio id="wind-audio" loop>
+    <!-- AI-assisted: example placeholder audio path -->
+    <source src="sounds/wind.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="fire-audio" loop>
+    <!-- AI-assisted: example placeholder audio path -->
+    <source src="sounds/fire.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
