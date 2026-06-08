@@ -11,6 +11,7 @@ const beautyValue=document.getElementById("beautyValue")
 const iqValue=document.getElementById("iqValue")
 const beautyConfirm=document.getElementById("beautyConfirm")
 const iqConfirm=document.getElementById("iqConfirm")
+const nextBtn=document.getElementById("nextBtn")
 
 let allowClick=false,loading=false,progress=0,stuckMode=true,popupBox=null
 let originalTexts={},scrambleInterval=null
@@ -44,4 +45,6 @@ function showPopup(t,cb=null){closePopup();popupBox=document.createElement("div"
 
 function closePopup(){if(popupBox){popupBox.remove();popupBox=null}}
 
-function showHardMath(){closePopup();popupBox=document.createElement("div");popupBox.className="math-box";popupBox.innerHTML=`<h3 class="messy">hard iq stuff</h3><p class="messy">solve this messy thing pls:</p><p style="font-size:18px;margin:10px 0;" class="messy">(7×13)+(√4489÷7)-log₁₀(10⁶·⁷)</p><input id="mathAnswer" type="number" placeholder="answer.."><button id="submitMath" class="btn">ok</button>`;document.body.appendChild(popupBox);document.getElementById("submitMath").onclick=()=>{const a=Number(document.getElementById("mathAnswer").value);if(a===67){closePopup()}else{iqRange.value=90;iqValue.textContent=90;closePopup()}}}
+function showHardMath(){closePopup();popupBox=document.createElement("div");popupBox.className="math-box";popupBox.innerHTML=`<h3 class="messy">hard iq stuff</h3><p class="messy">solve this messy thing pls:</p><p style="font-size:18px;margin:10px 0;" class="messy">(7×13)+(√4489÷7)-log₁₀(10⁶·⁷)</p><input id="mathAnswer" type="number" placeholder="answer.."><button id="submitMath" class="btn">ok</button>`;document.body.appendChild(popupBox);document.getElementById("submitMath").onclick=()=>{const a=Number(document.getElementById("mathAnswer").value);if(a===67){closePopup();nextBtn.style.display="block"}else{iqRange.value=90;iqValue.textContent=90;closePopup()}}}
+
+nextBtn.onclick=()=>{window.location.href="https://ducphatpham26-svg.github.io"}
