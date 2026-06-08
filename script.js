@@ -20,7 +20,6 @@ confirmBtn.addEventListener("mouseover",()=>{if(!allowClick&&!loading){confirmBt
 
 napBtn.addEventListener("click",()=>{
 
-// nếu đang ở surveyBox thì hiện nút luôn
 if(surveyBox.style.display==="block"){
 nextBtn.style.display="block"
 }
