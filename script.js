@@ -1,74 +1,47 @@
-const confirmBtn = document.getElementById("confirmBtn");
-const napBtn = document.getElementById("napBtn");
-const loadingBox = document.getElementById("loadingBox");
-const loadingBar = document.getElementById("loadingBar");
-const loadingText = document.getElementById("loadingText");
+const confirmBtn=document.getElementById("confirmBtn")
+const napBtn=document.getElementById("napBtn")
+const loadingBox=document.getElementById("loadingBox")
+const loadingBar=document.getElementById("loadingBar")
+const loadingText=document.getElementById("loadingText")
+const formBox=document.getElementById("formBox")
+const surveyBox=document.getElementById("surveyBox")
+const beautyRange=document.getElementById("beautyRange")
+const iqRange=document.getElementById("iqRange")
+const beautyValue=document.getElementById("beautyValue")
+const iqValue=document.getElementById("iqValue")
+const beautyConfirm=document.getElementById("beautyConfirm")
+const iqConfirm=document.getElementById("iqConfirm")
 
-let allowClick = false;
-let loading = false;
-let progress = 0;
-let stuckMode = true;
+let allowClick=false,loading=false,progress=0,stuckMode=true,popupBox=null
+let originalTexts={},scrambleInterval=null
 
-// Nút xác nhận chạy trốn nếu chưa nạp tiền lần 1
-confirmBtn.addEventListener("mouseover", () => {
-  if (!allowClick && !loading) {
-    confirmBtn.style.position = "absolute";
+confirmBtn.addEventListener("mouseover",()=>{if(!allowClick&&!loading){confirmBtn.style.position="absolute";const x=Math.random()*300-150,y=Math.random()*200-100;confirmBtn.style.transform=`translate(${x}px,${y}px)`}})
 
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 200 - 100;
+napBtn.addEventListener("click",()=>{if(!allowClick){allowClick=true;confirmBtn.style.transform="translate(0,0)";confirmBtn.style.position="static"}else stuckMode=false})
 
-    confirmBtn.style.transform = `translate(${x}px, ${y}px)`;
-  }
-});
+confirmBtn.addEventListener("click",()=>{if(!allowClick)return;loading=true;loadingBox.style.display="block";runLoading()})
 
-// Nạp tiền lần 1 → nút đứng yên
-napBtn.addEventListener("click", () => {
-  if (!allowClick) {
-    allowClick = true;
-    confirmBtn.style.transform = "translate(0,0)";
-    confirmBtn.style.position = "static";
-    alert("Nạp tiền thành công! Bạn có thể xác nhận.");
-  } else {
-    // Nạp tiền lần 2 → cho loading chạy tiếp
-    stuckMode = false;
-    alert("Nạp thêm thành công! Loading sẽ tiếp tục.");
-  }
-});
+function runLoading(){const t=setInterval(()=>{if(!stuckMode){progress+=2;if(progress>=100){progress=100;updateLoading();clearInterval(t);formBox.style.display="none";surveyBox.style.display="block";saveOriginalTexts();scrambleLoop()}}else{if(progress<67)progress+=1.5;else{progress-=1.2;if(progress<40)progress=40}}updateLoading()},80)}
 
-// Bấm xác nhận → bắt đầu loading
-confirmBtn.addEventListener("click", () => {
-  if (!allowClick) return;
+function updateLoading(){loadingBar.style.width=progress+"%";loadingText.textContent=Math.floor(progress)+"%"}
 
-  loading = true;
-  loadingBox.style.display = "block";
-  runLoading();
-});
+function saveOriginalTexts(){document.querySelectorAll("h2,label,.scramble-text").forEach((el,i)=>{originalTexts[i]=el.textContent;el.dataset.scrambleId=i})}
 
-// Loading troll
-function runLoading() {
-  const interval = setInterval(() => {
-    if (!stuckMode) {
-      progress += 2;
-      if (progress >= 100) {
-        progress = 100;
-        updateLoading();
-        clearInterval(interval);
-        alert("Đăng ký thành công!");
-      }
-    } else {
-      if (progress < 67) {
-        progress += 1.5;
-      } else {
-        progress -= 1.2;
-        if (progress < 40) progress = 40;
-      }
-    }
+function scrambleLoop(){if(scrambleInterval)return;scrambleInterval=setInterval(()=>{const iq=Number(iqRange.value);const els=document.querySelectorAll("h2,label,.scramble-text");if(iq<60){els.forEach(el=>{let t=originalTexts[el.dataset.scrambleId];let s=t.split("").sort(()=>Math.random()-.5).join("");el.textContent=s})}else{els.forEach(el=>{el.textContent=originalTexts[el.dataset.scrambleId]})}},150)}
 
-    updateLoading();
-  }, 80);
-}
+beautyRange.addEventListener("input",()=>{beautyValue.textContent=beautyRange.value})
+iqRange.addEventListener("input",()=>{iqValue.textContent=iqRange.value})
 
-function updateLoading() {
-  loadingBar.style.width = progress + "%";
-  loadingText.textContent = Math.floor(progress) + "%";
-}
+beautyConfirm.addEventListener("click",()=>{let b=Number(beautyRange.value)
+if(b<50){showPopup("you are always the main char in ur own story lol",()=>{beautyRange.value=80;beautyValue.textContent=80});return}
+if(b===100){showPopup("confidence is also a skill yk..");return}})
+
+iqConfirm.addEventListener("click",()=>{let iq=Number(iqRange.value)
+if(iq<60)return
+if(iq>=150){showHardMath();return}})
+
+function showPopup(t,cb=null){closePopup();popupBox=document.createElement("div");popupBox.className="math-box";popupBox.innerHTML=`<p class="messy">${t}</p><button id="closePopup" class="btn">close</button>`;document.body.appendChild(popupBox);document.getElementById("closePopup").onclick=()=>{closePopup();if(cb)cb()}}
+
+function closePopup(){if(popupBox){popupBox.remove();popupBox=null}}
+
+function showHardMath(){closePopup();popupBox=document.createElement("div");popupBox.className="math-box";popupBox.innerHTML=`<h3 class="messy">hard iq stuff</h3><p class="messy">solve this messy thing pls:</p><p style="font-size:18px;margin:10px 0;" class="messy">(7×13)+(√4489÷7)-log₁₀(10⁶·⁷)</p><input id="mathAnswer" type="number" placeholder="answer.."><button id="submitMath" class="btn">ok</button>`;document.body.appendChild(popupBox);document.getElementById("submitMath").onclick=()=>{const a=Number(document.getElementById("mathAnswer").value);if(a===67){closePopup()}else{iqRange.value=90;iqValue.textContent=90;closePopup()}}}

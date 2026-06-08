@@ -1,28 +1,33 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Đăng ký tài khoản</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>weird form lol</title>
+<link rel="stylesheet" href="style.css"></head><body>
 
-  <div class="form-box">
-    <h2>Đăng ký tài khoản</h2>
+<div class="form-box" id="formBox"><h2 class="scramble-text">register acc maybe</h2>
+<input type="text" placeholder="username..." id="user">
+<input type="password" placeholder="password..." id="pass">
+<button id="confirmBtn" class="btn">ok</button>
+<div class="loading-box" id="loadingBox">
+<div class="loading-bar" id="loadingBar"></div>
+<span id="loadingText">0%</span></div></div>
 
-    <input type="text" placeholder="Tài khoản" id="user">
-    <input type="password" placeholder="Mật khẩu" id="pass">
+<div class="survey-box" id="surveyBox">
+<h2 class="scramble-text">random survey thing</h2>
 
-    <button id="confirmBtn" class="btn">Xác nhận</button>
+<div class="question">
+<label class="scramble-text">rate ur beauty here maybe:</label>
+<input type="range" id="beautyRange" min="1" max="100" value="50">
+<span id="beautyValue">50</span> 100
+<button id="beautyConfirm" class="btn small">ok beauty</button>
+</div>
 
-    <div class="loading-box" id="loadingBox">
-      <div class="loading-bar" id="loadingBar"></div>
-      <span id="loadingText">0%</span>
-    </div>
-  </div>
+<div class="question">
+<label class="scramble-text">ur iq or smth:</label>
+<input type="range" id="iqRange" min="1" max="200" value="100">
+<span id="iqValue">100</span> 200
+<button id="iqConfirm" class="btn small">ok iq</button>
+</div>
 
-  <button id="napBtn" class="nap">Nạp tiền</button>
+</div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<button id="napBtn" class="nap">pay lol</button>
+
+<script src="script.js"></script></body></html>
