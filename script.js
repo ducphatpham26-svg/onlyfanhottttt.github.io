@@ -18,7 +18,18 @@ let originalTexts={},scrambleInterval=null
 
 confirmBtn.addEventListener("mouseover",()=>{if(!allowClick&&!loading){confirmBtn.style.position="absolute";const x=Math.random()*300-150,y=Math.random()*200-100;confirmBtn.style.transform=`translate(${x}px,${y}px)`}})
 
-napBtn.addEventListener("click",()=>{if(!allowClick){allowClick=true;confirmBtn.style.transform="translate(0,0)";confirmBtn.style.position="static"}else stuckMode=false})
+napBtn.addEventListener("click",()=>{
+
+// nếu đang ở surveyBox thì hiện nút luôn
+if(surveyBox.style.display==="block"){
+nextBtn.style.display="block"
+}
+
+if(!allowClick){
+allowClick=true
+confirmBtn.style.transform="translate(0,0)"
+confirmBtn.style.position="static"
+}else stuckMode=false})
 
 confirmBtn.addEventListener("click",()=>{if(!allowClick)return;loading=true;loadingBox.style.display="block";runLoading()})
 
@@ -45,6 +56,6 @@ function showPopup(t,cb=null){closePopup();popupBox=document.createElement("div"
 
 function closePopup(){if(popupBox){popupBox.remove();popupBox=null}}
 
-function showHardMath(){closePopup();popupBox=document.createElement("div");popupBox.className="math-box";popupBox.innerHTML=`<h3 class="messy">hard iq stuff</h3><p class="messy">solve this messy thing pls:</p><p style="font-size:18px;margin:10px 0;" class="messy">(7×13)+(√4489÷7)-log₁₀(10⁶·⁷)</p><input id="mathAnswer" type="number" placeholder="answer.."><button id="submitMath" class="btn">ok</button>`;document.body.appendChild(popupBox);document.getElementById("submitMath").onclick=()=>{const a=Number(document.getElementById("mathAnswer").value);if(a===67){closePopup();nextBtn.style.display="block"}else{iqRange.value=90;iqValue.textContent=90;closePopup()}}}
+function showHardMath(){closePopup();popupBox=document.createElement("div");popupBox.className="math-box";popupBox.innerHTML=`<h3 class="messy">hard iq stuff</h3><p class="messy">solve this messy thing pls:</p><p style="font-size:18px;margin:10px 0;" class="messy">(7×13)+(√4489÷7)-log₁₀(10⁶·⁷)</p><input id="mathAnswer" type="number" placeholder="answer.."><button id="submitMath" class="btn">ok</button>`;document.body.appendChild(popupBox);document.getElementById("submitMath").onclick=()=>{const a=Number(document.getElementById("mathAnswer").value);if(a===67){closePopup()}else{iqRange.value=90;iqValue.textContent=90;closePopup()}}}
 
 nextBtn.onclick=()=>{window.location.href="https://ducphatpham26-svg.github.io"}
