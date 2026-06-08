@@ -1,322 +1,119 @@
-/* AI-assisted: Base layout and styling generated with AI, then to be customized by student */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
 body {
-  background: radial-gradient(circle at top, #1b2735, #090a0f);
-  color: #f5f5f5;
-  min-height: 100vh;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #111);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins, Arial;
+  color: white;
 }
 
-header {
+.form-box {
+  background: rgba(30, 30, 30, 0.9);
+  padding: 35px;
+  border-radius: 15px;
   text-align: center;
-  padding: 1.5rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 330px;
+  box-shadow: 0 0 25px rgba(0, 255, 200, 0.2);
+  backdrop-filter: blur(10px);
 }
 
-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.3rem;
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #00ffd5;
+  text-shadow: 0 0 10px #00ffd5;
 }
 
-header p {
-  font-size: 0.95rem;
-  opacity: 0.8;
+input {
+  width: 90%;
+  padding: 12px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
 }
 
-.main-layout {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1rem;
-  gap: 1rem;
+input:focus {
+  box-shadow: 0 0 10px #00ffd5;
 }
 
-.panel {
-  flex: 1 1 320px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-}
-
-.panel h2 {
-  margin-bottom: 0.8rem;
-  font-size: 1.3rem;
-}
-
-/* FAN STYLES */
-
-.fan-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
-.fan-body {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 6px solid #ccc;
-  position: relative;
-  background: radial-gradient(circle, #444, #111);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fan-center {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #ddd;
-  z-index: 2;
-}
-
-.fan-blades {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.4), transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.2), transparent 60%);
-  mask-image: radial-gradient(circle, black 60%, transparent 61%);
-}
-
-/* Animation speed controlled by classes */
-
-.fan-off .fan-blades {
-  animation: none;
-}
-
-.fan-low .fan-blades {
-  animation: spin 1.2s linear infinite;
-}
-
-.fan-medium .fan-blades {
-  animation: spin 0.7s linear infinite;
-}
-
-.fan-high .fan-blades {
-  animation: spin 0.35s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* FIRE STYLES */
-
-.fire-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
-/* Meat skewer */
-
-.meat-skewer {
-  width: 160px;
-  height: 40px;
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-
-.meat-skewer::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: #c0a16b;
-  transform: translateY(-50%);
-  border-radius: 999px;
-}
-
-.meat {
-  width: 60px;
-  height: 28px;
-  border-radius: 14px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #b33; /* raw */
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
-  transition: background 0.6s ease, box-shadow 0.6s ease;
-}
-
-.meat.raw {
-  background: #b33;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
-}
-
-.meat.cooked {
-  background: #d98b4b;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
-}
-
-.meat.burnt {
-  background: #2b1b12;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
-}
-
-/* Fire */
-
-.fire {
-  position: relative;
-  width: 120px;
-  height: 140px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.flame {
-  position: absolute;
-  bottom: 30px;
-  width: 40px;
-  height: 70px;
-  border-radius: 50% 50% 50% 50%;
-  background: radial-gradient(circle at 50% 20%, #fff, #ffec85, #ff8c3b, #ff3b1f);
-  opacity: 0.9;
-  transform-origin: bottom center;
-  animation: flicker 0.6s infinite alternate;
-}
-
-.flame1 {
-  left: 20px;
-}
-
-.flame2 {
-  left: 40px;
-  animation-delay: 0.1s;
-}
-
-.flame3 {
-  left: 60px;
-  animation-delay: 0.2s;
-}
-
-.logs {
-  position: absolute;
-  bottom: 0;
-  width: 80px;
-  height: 30px;
-  background: linear-gradient(90deg, #4b2e16, #2b1b10);
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-}
-
-/* Fire intensity via scale */
-
-.fire-normal .flame {
-  transform: scale(1);
-}
-
-.fire-strong .flame {
-  transform: scale(1.2);
-}
-
-.fire-intense .flame {
-  transform: scale(1.4);
-}
-
-@keyframes flicker {
-  from {
-    transform: translateX(-2px) scaleY(1);
-    opacity: 0.8;
-  }
-  to {
-    transform: translateX(2px) scaleY(1.1);
-    opacity: 1;
-  }
-}
-
-/* Controls */
-
-.controls {
-  margin-top: 1rem;
-}
-
-.control-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.label {
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
-button {
-  background: rgba(255, 255, 255, 0.08);
-  color: #f5f5f5;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
-  padding: 0.35rem 0.8rem;
-  font-size: 0.85rem;
+.btn {
+  padding: 12px 25px;
+  border: none;
+  background: linear-gradient(45deg, #00ffd5, #00aaff);
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  transition: 0.25s;
+  box-shadow: 0 0 15px rgba(0,255,200,0.5);
 }
 
-button:hover {
-  background: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0,255,200,0.8);
 }
 
-button:active {
-  transform: scale(0.96);
+.nap {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #ff00aa, #ff0066);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,0,150,0.6);
+  transition: 0.25s;
 }
 
-/* Active state for speed buttons */
-
-button.active {
-  background: #ffb347;
-  color: #222;
-  box-shadow: 0 0 10px rgba(255, 179, 71, 0.7);
+.nap:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,0,150,0.9);
 }
 
-/* Bottom bar */
-
-.bottom-bar {
-  padding: 0.7rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+/* Loading bar đẹp */
+.loading-box {
+  width: 100%;
+  height: 22px;
+  background: #333;
+  border-radius: 10px;
+  margin-top: 25px;
+  display: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,255,200,0.3);
 }
 
-#status-text {
-  opacity: 0.9;
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ffd5, #00aaff);
+  border-radius: 10px;
+  transition: 0.15s;
+  box-shadow: 0 0 15px #00ffd5;
+  background-size: 200% 100%;
+  animation: shine 1.2s infinite linear;
 }
 
-/* Responsive */
+@keyframes shine {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
 
-@media (max-width: 768px) {
-  .main-layout {
-    flex-direction: column;
-  }
-
-  .panel {
-    flex: 1 1 auto;
-  }
+#loadingText {
+  position: absolute;
+  top: -28px;
+  right: 0;
+  font-size: 14px;
+  color: #00ffd5;
+  text-shadow: 0 0 10px #00ffd5;
 }
